@@ -11,4 +11,7 @@ router.post('/', flightsCtrl.create);
 // Direct to display form for new flight
 router.get('/new', flightsCtrl.new);
 
+// Direct to display a particular flight
+router.get('/:id', flightsCtrl.show)
+
 module.exports = router;
