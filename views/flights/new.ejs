@@ -18,13 +18,12 @@
     <label>Flight Number:</label>
     <input type="number" min="10" max="9999" name="flightNo"><br>
     <label>Time of Departure:</label>
-    <% const date = new Date(); %>
-    <input type="datetime-local" name="departs" value="<%= date.getFullYear() + 1; %>-<%= date.getMonth(); %>-<%= date.getDate(); %>T<%= date.getHours(); %>:<%= date.getMinutes(); %>"><br>
+    <% let date = new Date(); %>  
+    <% date.setMinutes(date.getMinutes() - date.getTimezoneOffset()); %> <!-- Considered throwing a party when I got this to work -->
+    <% date.setFullYear(date.getFullYear() + 1); %>
+    <% const dateString = date.toISOString().slice(0,16); %>
+    <input type="datetime-local" name="departs" value="<%= dateString %>"><br>
     <input type="submit" value="Add Flight">
 </form>
-
-<p>
-    <%= date.getFullYear() + 1; %>-<%= date.getMonth(); %>-<%= date.getDate(); %>T<%= date.getHours(); %>:<%= date.getMinutes(); %>
-</p>
 
 <%- include('../partials/footer') %>
