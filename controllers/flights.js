@@ -2,11 +2,13 @@ const Flight = require('../models/flight');
 
 function index(req, res) {
     Flight.find({}, function(err, flights) {
+        const now = Date.now();
         res.render('flights/index', {
             title: "All Flights",
-            flights
+            flights,
+            now
         });
-    });
+    }).sort({departs: 1});
 }
 
 function newFlights(req, res) {
