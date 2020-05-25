@@ -9,6 +9,20 @@ function index(req, res) {
     });
 }
 
+function newFlights(req, res) {
+    res.render('flights/new', {title: 'Add Flight'});
+}
+
+function create(req, res) {
+    const flight = new Flight(req.body);
+    flight.save(function(err) {
+        if (err) return res.redirect('/flights/new');
+        res.redirect('/flights');
+    });
+}
+
 module.exports = {
-    index
+    index,
+    new: newFlights,
+    create
 }
