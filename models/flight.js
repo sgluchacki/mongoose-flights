@@ -6,7 +6,12 @@ const destinationSchema = new Schema({
         type: String,
         enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
     },
-    arrives: Date
+    arrives: {
+        type: Date,
+        // min: flight.departs
+    }
+}, {
+    timestamps: true
 });
 
 const flightSchema = new Schema({

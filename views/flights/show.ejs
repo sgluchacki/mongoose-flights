@@ -1,27 +1,56 @@
 <%- include('../partials/header') %>
 
-<!-- <table id="details">
-    <tr>
-        <th scope="row">Airline:</th>
-        <td></td>
-    </tr>
-    <tr>
-        <th scope="row">Airport:</th>
-        <td></td>
-    </tr>
-    <tr>
-        <th scope="row">Flight Number:</th>
-        <td></td>
-    </tr>
-    <tr>
-        <th scope="row">Departs:</th>
-        <td></td>
-    </tr>
-</table> -->
+<% let date = new Date(flight.departs); %>
+<% date.setMinutes(date.getMinutes() - date.getTimezoneOffset()); %>  
+
 
 <div>Airline: <%= flight.airline %></div>
 <div>Airport: <%= flight.airport %></div>
 <div>Flight Number: <%= flight.flightNo %></div>
 <div>Departs: <%= flight.departs %></div>
+<br>
+<br>
+<br>
+
+<form id="new-form" action="/flights/<%= flight._id %>/destinations" method="POST">
+    <h3>Destinations</h3>
+    <label>Airport:</label>
+    <select name="airport">
+        <option value="AUS">AUS</option>
+        <option value="DEN">DEN</option>
+        <option value="DFW">DFW</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
+    </select><br>
+    <label>Time of Arrival:</label>
+    <% const dateString = date.toISOString().slice(0,16); %>
+    <input type="datetime-local" name="arrives" value="<%= dateString %>"><br>
+    <input type="submit" value="Add Destination">
+</form>
+
+<br>
+<br>
+<br>
+<% if (flight.destinations.length) { %>
+    <table id="list">
+        <thead>
+            <tr>
+                <th>Airport</th>
+                <th>Time of Arrival</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% flight.destinations.forEach(function(destination) { %>
+                <% let now = Date.now(); %>
+                <tr style="color: <%= destination.arrives.getTime() < now ? 'red' : 'black' %>">
+                    <td><%= destination.airport %></td>
+                    <td><%= destination.arrives %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <h5>No Destinations Yet</h5>
+<% } %>
 
 <%- include('../partials/footer') %>

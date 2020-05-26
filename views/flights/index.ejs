@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         <% flights.forEach(function(flight) { %>
-            <% let now = Date.now(); %>
+
             <tr style="color: <%= flight.departs.getTime() < now ? 'red' : 'black' %>">
                 <td><%= flight.airline %></td>
                 <td><%= flight.airport %></td>

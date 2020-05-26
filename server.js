@@ -7,7 +7,7 @@ require('./config/database');
 
 var indexRouter = require('./routes/index');
 var flightsRouter = require('./routes/flights');
-const destinationsRouter = require('.routes/destinations');
+const destinationsRouter = require('./routes/destinations');
 
 var app = express();
 
