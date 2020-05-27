@@ -12,6 +12,16 @@
 <br>
 <br>
 
+<h3>Tickets</h3>
+<div><a href="flights/<%= `${ flight._id }` %>/tickets/new">Add Ticket</a></div>
+<div><h5>No Tickets Yet</h5></div>
+<div>IF THERE ARE TICKETS, RENDER THOSE SUCKERS HERE</div>
+<br>
+<br>
+<br>
+
+
+
 <form id="new-form" action="/flights/<%= flight._id %>/destinations" method="POST">
     <h3>Destinations</h3>
     <label>Airport:</label>
