@@ -8,7 +8,7 @@ const destinationSchema = new Schema({
     },
     arrives: {
         type: Date,
-        // min: flight.departs
+        // min: flight.departs would be nice. How do I implement this?
     }
 }, {
     timestamps: true
@@ -25,7 +25,7 @@ const flightSchema = new Schema({
     },
     flightNo: {
         type: Number,
-        required: true,     //need err handling in create
+        required: true, 
         min: 10,
         max: 9999
     },
